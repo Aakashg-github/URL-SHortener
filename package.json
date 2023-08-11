@@ -1,0 +1,24 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "A simple url shortener",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "url"
+  ],
+  "author": "Aakash",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoosh": "^0.0.7",
+    "nodemon": "^3.0.1",
+    "pug": "^3.0.2",
+    "shortid": "^2.2.16",
+    "uuid": "^9.0.0"
+  }
+}

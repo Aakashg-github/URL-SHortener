@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 100px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .url-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input[type="url"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .table-container {
+  margin: 20px auto;
+  width: 80%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>URL Shortener</h1>
+    <form method="post" action="/url" class="url-form">
+      <input type="url" name="url" id="original-url" placeholder="Enter your laong URL" required>
+      <button type="submit">Shorten URL</button>
+    </form>
+    <p> <a href="http://localhost:8000/url/">Click Here </a> And paste ShortId after / To visit URL </p>
+  </div>
+  <% if (locals.id) { %>
+    <div class="container">
+      <p>URL Genrated = <a>http://localhost:8000/url/<%= id %></a></p>
+    </div>
+    <% } %>
+
+      <% if (locals.urls) { %>
+        <div class="table-container">
+          <table>
+            <thead>
+              <th>S No</th>
+              <th>ShortId</th>
+              <th>redirectURL</th>
+              <th>Clicks</th>
+            </thead>
+            <tbody>
+              <% const urlsArray=Object.entries(urls); %>
+                <% for (const [index, urlData] of urlsArray) { %>
+                  <tr>
+                    <td>
+                      <%= parseInt(index) + 1 %>
+                    </td>
+                    <td>
+                      <%= urlData.ShortId %>
+                    </td>
+                    <td>
+                      <%= urlData.redirectURL %>
+                    </td>
+                    <td>
+                      <%= urlData.visitHistory.length %>
+                    </td>
+                  </tr>
+                  <% } %>
+            </tbody>
+
+          </table>
+        </div>
+        <% } %>
+
+
+
+</body>
+
+</html>
